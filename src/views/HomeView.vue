@@ -44,24 +44,26 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
 import { defineComponent } from 'vue';
-import { useRoute,createWebHistory,createRouter} from 'vue-router';
-import router from '../router/index'
-
+import { useRouter} from 'vue-router';
+// import router from '../router/index'
+//c
 export default defineComponent({
   name: 'HomeView',
   setup(){
     
-    // const r = useRoute()
-    // const list =  r.getRoutes().filter(
-    //   v=>v.meta.isShoe
-    // )
+    const r = useRouter()
+    const allRoutes =  r.getRoutes().filter(
+      v=>v.meta.isShoe
+    )
 
-    const allRoutes = router.getRoutes().filter(
-      v=>v.meta.isShow
-    );
+    // const allRoutes = router.getRoutes().filter(
+    //   v=>v.meta.isShow
+    // );
+  
 
+    
     console.log(allRoutes);
     return {allRoutes}
     
