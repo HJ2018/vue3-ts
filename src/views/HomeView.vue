@@ -16,19 +16,29 @@
 
         <el-aside width="200px">
 
-          <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo" default-active="2"
-            text-color="#fff">
+        <el-menu 
+          active-text-color="#ffd04b" 
+          background-color="#545c64"
+          class="el-menu-vertical-demo"
+          default-active="2"
+          text-color="#fff"
+          router
+          >
 
-            <el-menu-item index="2">
-              <el-icon><icon-menu /></el-icon>
-              <span>Navigator Two</span>
+            <el-menu-item 
+            :index="item.path"
+             v-for="item in allRoutes" 
+             :key="item.path">
+              <span>{{ item.meta.title }}</span>
             </el-menu-item>
           </el-menu>
 
         </el-aside>
 
 
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -36,11 +46,27 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useRoute,createWebHistory,createRouter} from 'vue-router';
+import router from '../router/index'
 
 export default defineComponent({
   name: 'HomeView',
-  components: {
+  setup(){
+    
+    // const r = useRoute()
+    // const list =  r.getRoutes().filter(
+    //   v=>v.meta.isShoe
+    // )
+
+    const allRoutes = router.getRoutes().filter(
+      v=>v.meta.isShow
+    );
+
+    console.log(allRoutes);
+    return {allRoutes}
+    
   },
+  components: {},
 });
 </script>
 
